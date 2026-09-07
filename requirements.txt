@@ -1,0 +1,17 @@
+# Data Analysis and Manipulation
+pandas==2.2.2
+numpy==1.26.4
+pyyaml==6.0.1
+
+# Machine Learning
+scikit-learn==1.5.0
+xgboost==2.0.3
+lightgbm==4.3.0
+
+# MLOps & Experiment Tracking
+mlflow==2.14.1
+
+# API & Deployment
+fastapi==0.111.0
+uvicorn==0.30.1
+pydantic==2.7.4

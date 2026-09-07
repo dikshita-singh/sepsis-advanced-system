@@ -1,0 +1,18 @@
+# Directory Paths
+paths:
+  raw_data_dir: "data/raw"
+  processed_data_dir: "data/processed"
+  model_dir: "models"
+
+# Data Cleaning Parameters
+preprocessing:
+  missing_threshold: 0.85 # Drop columns missing more than 85% of data globally
+  fill_strategy: "forward_fill"
+
+# Model Hyperparameters
+model:
+  target_column: "SepsisLabel"
+  test_size: 0.2
+  random_state: 42
+  learning_rate: 0.05
+  n_estimators: 100
