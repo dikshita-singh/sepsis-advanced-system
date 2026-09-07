@@ -11,34 +11,38 @@ An end-to-end, real-time Sepsis Early Detection System powered by a **LightGBM C
 |   Clinical Data   |       |  FastAPI Backend  |       |   Streamlit UI    |
 | (Vitals & Notes)  | ----> |  (ML Prediction)  | ----> | (Risk Dashboard)  |
 +-------------------+       +-------------------+       +-------------------+
+```
 
-🧠Machine Learning Model & Rationale
-Model Used
-LightGBM Classifier (lightgbm.LGBMClassifier) trained on ICU patient clinical data to predict the early onset of sepsis.
+---
 
-Why LightGBM?
+## 🧠 Machine Learning Model & Rationale
+
+### Model Used
+**LightGBM Classifier** (`lightgbm.LGBMClassifier`) trained on ICU patient clinical data to predict the early onset of sepsis.
+
+### Why LightGBM?
 The choice of LightGBM over other machine learning algorithms (such as deep learning or standard decision trees) is grounded in key domain requirements for clinical monitoring:
 
-Low Latency & High Throughput Inference: Real-time patient monitoring requires instantaneous prediction without introducing pipeline latency. LightGBM performs rapid inference, requiring sub-millisecond evaluation times crucial for ICU environments.
+1. **Low Latency & High Throughput Inference:** Real-time patient monitoring requires instantaneous prediction without introducing pipeline latency. LightGBM performs rapid inference, requiring sub-millisecond evaluation times crucial for ICU environments.
+2. **Handling Complex Tabular Data:** Medical data contains mixed feature types (numerical vitals and categorical data). LightGBM handles tabular data exceptionally well and manages missing clinical values natively.
+3. **High Accuracy with Gradient Boosting:** It builds trees sequentially to correct previous errors, yielding high confidence scores and minimizing false negatives in critical healthcare scenarios.
 
-Handling Complex Tabular Data: Medical data contains mixed feature types (numerical vitals and categorical data). LightGBM handles tabular data exceptionally well and manages missing clinical values natively.
+---
 
-High Accuracy with Gradient Boosting: It builds trees sequentially to correct previous errors, yielding high confidence scores and minimizing false negatives in critical healthcare scenarios.
+## ✨ Key Features
 
-✨ Key Features
-Live Data Processing: Asynchronous capture and processing of patient vitals and clinical notes.
+* **Live Data Processing:** Asynchronous capture and processing of patient vitals and clinical notes.
+* **Automated ML Classification:** Evaluates every data point against the pre-trained LightGBM model.
+* **Persistent Event Logging:** Stores patient risk scores, prediction labels, and confidence metrics securely.
+* **REST API Backend:** Lightweight FastAPI service serving prediction endpoints, statistics, and risk triggers.
+* **Clinical Web Dashboard:** Interactive UI built with Streamlit featuring live charts, real-time polling, patient risk metrics, and dynamic security/medical alert indicators.
 
-Automated ML Classification: Evaluates every data point against the pre-trained LightGBM model.
+---
 
-Persistent Event Logging: Stores patient risk scores, prediction labels, and confidence metrics securely.
+## 📂 Project Structure
 
-REST API Backend: Lightweight FastAPI service serving prediction endpoints, statistics, and risk triggers.
-
-Clinical Web Dashboard: Interactive UI built with Streamlit featuring live charts, real-time polling, patient risk metrics, and dynamic security/medical alert indicators.
-
-📂 Project Structure
-
-Clinical Web Dashboa├── api/
+```text
+├── api/
 │   ├── app.py                 # FastAPI application and endpoints
 │   ├── schemas.py             # Pydantic models for data validation
 │   └── utils.py               # API helper functions
@@ -49,28 +53,30 @@ Clinical Web Dashboa├── api/
 ├── src/                       # Source code for data processing
 ├── dashboard.py               # Streamlit frontend application
 ├── requirements.txt           # Python dependencies
+└── README.md                  # Project documentation
+```
 
-🚀 Quickstart Guide
-1. Clone the repository
+---
 
-Bash
+## 🚀 Quickstart Guide
+
+**1. Clone the repository**
+```bash
 git clone [https://github.com/dikshita-singh/sepsis-advanced-system.git](https://github.com/dikshita-singh/sepsis-advanced-system.git)
 cd sepsis-advanced-system
+```
 
-2. Install dependencies
-
-Bash
-
-3. Run the FastAPI Backend
-
-Bash
-uvicorn api.app:app --reload
-
-4. Run the Streamlit Dashboard (Open a new terminal)
-
-Bash
-streamlit run dashboard.py
+**2. Install dependencies**
+```bash
 pip install -r requirements.txt
-└── README.md                  # Project documentationrd: Interactive UI built with Streamlit featuring live charts, real-time polling, patient risk metrics, and dynamic security/medical alert indicators.
+```
 
-📂 Project Structure
+**3. Run the FastAPI Backend**
+```bash
+uvicorn api.app:app --reload
+```
+
+**4. Run the Streamlit Dashboard (Open a new terminal)**
+```bash
+streamlit run dashboard.py
+```
